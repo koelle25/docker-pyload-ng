@@ -60,3 +60,7 @@ COPY --from=unrar /usr/bin/unrar-alpine /usr/bin/unrar
 # ports and volumes
 EXPOSE 8000
 VOLUME /config
+
+# append GlobalSign AlphaSSL CA certificate to python ca-bundle
+RUN cat /GlobalSign_GCC_R6_AlphaSSL_CA_2023.pem >> /lsiopy/lib/python3.12/site-packages/certifi/cacert.pem \
+  && rm /GlobalSign_GCC_R6_AlphaSSL_CA_2023.pem
